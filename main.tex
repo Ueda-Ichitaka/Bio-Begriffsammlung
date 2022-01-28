@@ -41,540 +41,464 @@
 
 \begin{document}
 
-
-\section{Haskell}%
-\begin{minted}{haskell}
-digitsToInt :: [Char] -> Int
-height :: Tree t -> Int --Höhe von binärem Baum
-odds :: Integer t -> [t]
-paths :: Tree t -> [[t]] --Liste aller Pfade durch binären Baum
-primes :: Integer -> [Integer] --infinite list of primes
-size :: Tree t -> Int --Anzahl Knoten in binärem Baum
-\end{minted}
 \vspace{-1mm}
 
-\noindent\textbf{Prelude:}
-\vspace{-2mm}
-\begin{minted}{haskell}
-all :: (a -> Bool) -> [a] -> Bool --True if all elements satisfy the predicate, False otherwise.
-any :: (a -> Bool) -> [a] -> Bool --True if any element satisfies the predicate, and False otherwise.
-break :: (a -> Bool) -> [a] -> ([a],[a]) --break where the predicate is first satisfied(snd empty if never).
-chr :: Int -> Char
-concat :: [[a]] -> [a] --folds nested list using foldr.
-digitToInt :: Char -> Int
-div :: Integral a => a -> a -> a --integer division of integral arguments.
-dropWhile :: (a -> Bool) -> [a] -> [a] --drops while predicate is satisfied.
-elem :: Eq a => a -> [a] -> Bool --True if element is in list
-exp :: Floating a => a -> a --exponential function.
-filter :: (a -> Bool) -> [a] -> [a] --returns list with all elements that satisfy predicate.
-floor :: (RealFrac a, Integral b) => a -> b --returns the largest integer not greater than its argument.
-foldl :: (a -> b -> a) -> a -> [b] -> a --fold list with operator and start value, left associative manner.
-foldr :: (a -> b -> b) -> b -> [a] -> b --right associative manner.
-fromInt :: Num a => Int -> a --Converts from Int to a numeric type which is in class Num.
-fromInteger :: Num a => Integer -> a --Converts from Integer to a numeric type which is in class Num. 
-fst :: (a, b) -> a
-gcd :: Integral a => a -> a -> a
-isAlpha :: Char -> Bool
-isDigit :: Char -> Bool
-iterate :: (a -> a) -> a -> [a] --iterate f x returns the infinite list [x,f(x),f(f(x)),...].
-last :: [a] -> a --applied to a non empty list, returns the last element of the list.
-lcm :: Integral a => a -> a -> a --returns the least common multiple of its two integral arguments.
-length :: [a] -> Int
-lines :: String -> [String] --split by newline.
-log :: Floating a => a -> a
-map :: (a -> b) -> [a] -> [b] --applies function to each element of list.
-max :: Ord a => a -> a -> a
-maximum :: Ord a => [a] -> a
-min :: Ord a => a -> a -> a
-minimum :: Ord a => [a] -> a
-mod :: Integral a => a -> a -> a --returns the modulus of its two arguments.
-notElem :: Eq a => a -> [a] -> Bool --False if element is in list.
-not :: Bool -> Bool
-null :: [a] -> Bool --returns True if its argument is the empty list and False otherwise.
-ord :: Char -> Int --applied to a character, returns its ascii code as an
-integer.
-pred :: Enum a => a -> a --return predecessor.
-product :: Num a => [a] -> a --applied to a list of numbers, returns their product.
-repeat :: a -> [a] --return infinite list of same value.
-replicate :: Int -> a -> [a] --repeats value specified number of times as list.
-reverse :: [a] -> [a]
-round :: (RealFrac a, Integral b) => a -> b --rounds its argument to the nearest integer.
-show :: Show a => a -> String --converts value to its string representation.
-snd :: (a, b) -> b --returns the second element of a two element tuple.
-sort :: Ord a => [a] -> [a] --sorts its argument list in ascending order.
-span :: (a -> Bool) -> [a] -> ([a],[a]) --splits list as takeWhile and rest.
-splitAt :: Int -> [a] -> ([a],[a]) 
-sqrt :: Floating a => a -> a
-succ :: Enum a => a -> a --return successor.
-sum :: Num a => [a] -> a --computes the sum of a finite list of numbers.
-takeWhile :: (a -> Bool) -> [a] -> [a]
-truncate :: (RealFrac a, Integral b) => a -> b --drops fractional part of float, returning only integral.
-undefined :: a  --undefined value. It is a member of every type.
-unlines :: [String] -> String
-until :: (a -> Bool) -> (a -> a) -> a -> a --applies function to value until predicate is satisfied.
-unwords :: [String] -> String --join with spaces.
-words :: String -> [String] --split with spaces.
-zip :: [a] -> [b] -> [(a,b)] --zip with comma.
-zipWith :: (a -> b -> c) -> [a] -> [b] -> [c]
-^,** --power for int,floats.
-/=, ==, <=, >= --not equal, equal, less equal, greater equal
+\section{A}
+\begin{minted}[linenos,numberblanklines=false,tabsize=4,breaklines,breakindent=8]{haskell}
+Beispielbegriff :: Kurzerklärung -- Lange erklärung 
 
+Abiogenese -- Urzeugung, Erklärung der Entstehung von Leben aus Unbelebtem.
+
+Actin -- Teil des Cytoskeletts, bildet spiralige Fäden, an denen Myosinmotoren entlangwandern, Baustein der Muskeln
+
+Actomyosin -- Überbegriff für das actinbasierte Bewegungssystem bestehend aus einer Actin"straße" und einem Myosin"motor"
+
+adaptive Radiation -- schnelle Artbildung durch Besiedlung verschiedener ökologischer Nischen in einem neuen Lebensraum
+
+Aggregation -- Entstehung von Vielzelligkeit durch "Haufenbildung" einzelliger Formen
+
+aktiver Transport -- Transport eines Moleküls über eine Membran entgegen dem chemischen Gradienten unter Aufwand von Energie
+
+Aktualitätsprinzip -- Rekonstruktion der geologischen Vorzeit aufgrund der Gesetze der Jetztzeit (geht auf Lyell zurück)
+
+Allel -- Variante eines Gens, z.B. bei einer Mutation entsteht aus dem Wildtyp- ein Mutanten-Allel
+
+allopatrisch -- Variante der Artbildung, bei der die Subpopulation zuerst geographisch getrennt werden und danach genetisch allmählich so unterschiedlich werden, dass irgendwann eine Fortpflanzungsbarriere entsteht.
+
+Allopolyploidie -- Hybridisierung mit anschliessender Verdopplung des Genoms, so dass eine fertile Nachkommenschaft entsteht. Häufiger Mechanismus der pflanzlichen Artbildung
+
+Altruismus -- Gegenstück zu Egoismus, ein Individuum handelt zum Wohle der Anderen
+
+amphipathisch -- Moleküle, die hydrophobe und hydrophile Bereiche vereinigen (z.B. Membranlipide)
+
+Analogie -- eine durch ähnliche Funktion entstandene Ähnlichkeit der Gestalt (Synonym: Konvergenz), Gegensatz zur Homologie, wo die Ähnlichkeit auf Verwandtschaft (Abstammung) zurückgeht.
+
+Aneuploidie -- einzelne Chromosomen sind in einer vom üblichen Chromosomensatz abweichenden Anzahl vorhanden, also entweder öfter, weniger oft oder ganz fehlen
+
+Anticodon -- komplementäre Sequenz aus drei Nucleotiden auf der tRNS, das sich mit dem Codon auf der mRNS paart.
+
+Aquaporine -- Carrier für Wasser, erhöhen die Wasserpermeabilität von Membranen für schnelle Transportreaktionen
+
+Archaeen -- drittes Reich der Lebewesen neben Pro- und Eukaryoten. Die Archaeen kommen in Extremstandorten vor und entsprechen wohl den ältesten Lebensformen.
+
+Artkonstanz -- die Vorstellung, dass Arten unveränderlich sind, häufig verbunden mit der Vorstellung, dass sie in dieser Form von einem göttlichen Wesen geschaffen worden seien. Es gibt christliche, aber auch muslimische Formen dieser kreationistischen Vorstellung.
+
+Atmungskette -- Komplex aus Membranproteinen in der inneren Mitochondrienmembran, wo bei der Atmung ein Protonengradient entsteht, der dann die ATP-Synthase treibt.
+
+ATP-Synthase -- eines der wichtigsten Proteine dieser Erde, das an der inneren Mitochondrienmembran oder der Thylakoidmembran sitzt und einen elektrischen Gradienten (aus Protonen) dazu benutzt, das energiereiche ATP herzustellen, mit dem zahlreiche energieverbrauchende Reaktionen des Lebens angetrieben werden.
+    
 \end{minted}
+\newpage
 
 
-\section{Prolog}
-\begin{minted}{prolog}
-allDifferent(L). %True, if all elements in L are different.
-append(L1,L2,L). %append L1 and L2 in L.
-delete(L1,X,L2). %delete X from L1 in L2 or get deleted X from L1 and L2.
-digit(D). %True, if D is digit.
-even(X). %True, if X is even.
-fib(X,Y). %calculate X-th fibonacci in Y.
-max(X,Y,Z). %get maximum from X and Y in Z.
-member(X,L). %True, if X is in L.
-nat(X). %infinite list of natural numbers.
-odd(X). %True if X is odd.
-permute(X,Y). %generate all permutations of X in Y.
-qsort(X,Y). %sort X in Y.
-rev(X,Y). %reverse X in Y.
+\section{B}
+\begin{minted}[linenos,numberblanklines=false,tabsize=4,breaklines,breakindent]{haskell}
+Benthos -- festsitzende Flora der Gewässer, wegen der Abhängigkeit vom Licht auf die Küstenlinie beschränkt (Gegenbegriff: Plankton)
 
-is %assign value of right side to left side.
+Binomiale Nomenklatur -- Bezeichnung aller Lebensformen über einen Gattungs- und einen Artnamen. Von Carl v. Linné allgemein eingeführt.
 
-[Name1, Name2 | Names] %list notation
-/,// %floating point, integer division
-=<,>=,=:=,=\= %arithmetic comparison
-\=,= %not unifiable, unification
-\==,== %term comparison
+Biofilmtheorie -- Theorie, dass Leben an katalytische wirksamen Oberflächen von Pyriten entstand (alternativ zur Ursuppentheorie von Oparin und Haldane)
 
+Biogenetisches Grundgesetz -- Modell von Häckel, wonach ein Lebewesen in der Individualentwicklung die Stammesentwicklung wiederholt
+
+Barr Körperchen :: --
 \end{minted}
-
 \newpage
-
-%\newgeometry{left=10mm, top=10mm, bottom=20mm}
-
-
-\section{Bytecode}
-\begin{lstlisting}
-aload/aload_0 to _3 #load a reference onto the stack from local variable
-areturn #return a reference from a method
-arraylength #get the length of an array
-astore/aload_0 to _3 #store a reference into a local variable
-getfield/getstatic #get (static) field value of object/class, by ref index in const pool
-goto #goes to another instruction at branchoffset, eg: goto label
-iadd #add two ints, take from stack
-iand #perform bitwise and on two integers, take from stack
-iconst_0 to _5 #load the int value 0 bis 5 onto the stack
-idiv #divide two integers, take from stack
-
-# ifxxx label => jump to label if condition is satisfied
-if_icmpeq #if ints are equal, branch to instruction at branchoffset
-if_icmpge #if fst is greater/equal to snd, branch to instruction at branchoffset
-if_icmpgt #if fst is greater snd, branch to instruction at branchoffset
-if_icmple #if fst is less/equal to snd, branch to instruction at branchoffset
-if_icmplt #if fst is less than snd, branch to instruction at branchoffset
-if_icmpne #if ints are not equal, branch to instruction at branchoffset
-ifeq #if value is 0, branch to instruction at branchoffset
-ifge #if value is greater/equal to 0, branch to instruction at branchoffset
-ifgt #if value is greater than 0, branch to instruction at branchoffset
-ifle #if value is less than/equal to 0, branch to instruction at branchoffset
-iflt #if value is less than 0, branch to instruction at branchoffset
-ifne #if value is not 0, branch to instruction at branchoffset
-ifnonnull #if value is not null, branch to instruction at branchoffset
-ifnull #if value is null, branch to instruction at branchoffset
-
-iinc #increment local variable => iinc n x => increment var at n by x
-iload/iload_0 to _3 #load an int value from a local variable on stack
-imul #multiply two integers, take from stack
-ineg #negate int, take from stack
-instanceof #determines if object is of given type, by class ref in const pool
-
-# ex: invokexxx Test.foo(I)I , I as int => I, void => V, boolean => Z
-# or if "in constant pool at index n" then => invokexxx #n
-invokedynamic #invokes dynamic method, puts result on stack, index in constant pool (arg)
-invokeinterface #invokes interface method, puts result on stack, index in constant pool (arg)
-invokespecial #invoke instance method, puts result on stack, index in constant pool (arg)
-invokestatic #invoke a static method, puts result on stack, index in constant pool (arg)
-invokevirtual #invoke virtual method, puts result on stack, index in constant pool (arg)
-
-ior #bitwise int or, take from stack
-ireturn #return an integer from a method, take from stack
-ishl/ishr #int arithmetic shift left/right
-istore/istore_0 to _3 #store int value into variable
-isub #int subtract, take from stack
-ixor #int xor, take from stack
-ldc #push a constant on stack
-new #create new object of type identified by class reference in constant pool index
-nop #perform no operation
-pop #discard the top value on the stack (pop2 for double or long)
-putfield/putstatic #set (static) field to val in object/class, by ref index in const pool
-ret #continue execution from address taken from a local variable
-return #return void from method
-swap #swaps two top words on stack (note that the words must not be double or long)
-\end{lstlisting}
-
-\newpage
-
-
-\section{Lambda-Kalkül}
-{\large
-Lambda-Ausdrücke zu Church:\newline
-$c_0~=~\lambda s.~\lambda z.~z$\newline
-$c_1~=~\lambda s.~\lambda z.~s~z$\newline
-$c_2~=~\lambda s.~\lambda z.~s~(s~z)$\newline
-$pred~=~\lambda n.~n~(\lambda x.~\lambda f.~f~(x~c_0)~(succ~(x~c_0)))~(\lambda f.~f~c_0~c_0)~c_{true}$\newline
-$succ~=~\lambda n.~\lambda s.~\lambda z.~s~(n~s~z)$\newline
-$plus~=~\lambda m.~\lambda n.~\lambda s.~\lambda z.~m~s~(n~s~z)$\newline
-$times~=~\lambda m.~\lambda n.~\lambda s.~n~(m~s)~\stackrel{\eta}{=}~\lambda m.~\lambda n.~\lambda s.~\lambda z.~n~(m~s)~z$\newline
-$exp~=~\lambda m.~\lambda n.~n~m~\stackrel{\eta}{=}~\lambda m.~\lambda n.~\lambda s.~\lambda z.~n~m~s~z$\newline
-$c_{true}~=~\lambda t.~\lambda f.~t$\newline
-$c_{false}~=~\lambda t.~\lambda f.~f$\newline
-$isZero~=~\lambda n.~n~(\lambda x.~c_{false})~c_{true}$\newline
-
-
-\noindent$Y~=~\lambda f.~(\lambda x.~f~(x~x))~(\lambda x.~f~(x~x))$~\#Rekursionsoperator\newline
-}
-\vspace{1em}
-
-\noindent
-call-by-name:~reduziere linkesten äußersten Redex, der nicht von $\lambda$ umgeben\\
-call-by-value:~reduziere linkesten äußersten Redex, der nicht von $\lambda$ umgeben und dessen Argument ein Wert ist\\
-$\beta$-Reduktion: Entspricht Ausführung der Funktionsanwendung auf einem Redex\newline
-Normalform: Term, der nicht weiter Reduziert werden kann\newline
-$\alpha$-Äquivalenz:~$t_1$ und $t_2$ heißen $\alpha$-äquivalent ($t_1$ $\stackrel{\alpha}{=}$ $t_2$), wenn $t_1$ in $t_2$ durch konsistente Umbenennung der $\lambda$-gebundenen Variablen überführt werden kann.\newline
-$\eta$-Äquivalenz: Terme $\lambda x.~f~x$ und $f$ heißen $\eta$-äquivalent $(\lambda x.~f~x~=~f)$, falls $x$ nicht freie Variable von $f$\newline
-
-\vspace{3em}
-
-
-\section{Typinferenz}
-
-{\Large
-\begin{multicols}{2}
-
-\begin{prooftree}
-\AxiomC{$c~\upepsilon~Const$}
-\LeftLabel{CONST}
-\UnaryInfC{$\Gamma\vdash c : \tau_c$}
-\end{prooftree}
-
-\begin{prooftree}
-\AxiomC{$\Gamma\vdash t : \tau'$}
-\AxiomC{$\tau'\succeq\tau$}
-\LeftLabel{VAR}
-\BinaryInfC{$\Gamma\vdash t : \tau$}
-\end{prooftree}
-
-\end{multicols}
-
-\begin{multicols}{2}
-
-\begin{prooftree}
-\AxiomC{$\Gamma,(x : \tau_1)\vdash t : \tau_2$}
-\LeftLabel{ABS}
-\UnaryInfC{$\Gamma\vdash\lambda x.t : \tau_1\rightarrow\tau_2$}
-\end{prooftree}
-
-\begin{prooftree}
-\AxiomC{$\Gamma\vdash f_1 : \tau_1\rightarrow\tau_2$}
-\AxiomC{$\Gamma\vdash f_2 : \tau_1$}
-\LeftLabel{APP}
-\BinaryInfC{$\Gamma\vdash f_1~f_2 : \tau_2$}
-\end{prooftree}
-
-\end{multicols}
-
-\begin{prooftree}
-\AxiomC{$\Gamma\vdash t_1 : \tau_1$}
-\AxiomC{$\Gamma,x:ta(\tau_1,\Gamma)\vdash t_2 : \tau_2$}
-\LeftLabel{LET}
-\BinaryInfC{$\Gamma\vdash let~x~=~t_1~in~t_2 : \tau_2$}
-\end{prooftree}
-}
-
-\newpage
-
-%\newgeometry{left=10mm, top=20mm, bottom=10mm}
 
 
 \section{C}
+\begin{minted}[linenos,numberblanklines=false,tabsize=4,breaklines,breakindent]{haskell}
+Carrier -- Membranproteine, die den Durchfluss von Molekülen ermöglichen, die sonst nicht hindurchgelangen würden
 
-\textbf{volatile:} no register or optimization, always fetch from main memory, useful if variable is accessed outside user program control (e.g. I/O buffers)
+Chitin -- Baustoff der Zellwand von Pilzen und Insekten, Polymer, das aus Acetyl-Glucosamin besteht
 
-\subsection{MPI}
+Chlorophyll -- Blattgrün, Pflanzenfarbstoff, besteht aus einem hydrophilen Porphyrinring, wo die Lichtreaktion der Photosynthese stattfindet und einem hydrophoben Phytolschwanz, mit dem der Farbstoff an der Thylakoidmembran verankert ist.
 
-\begin{minted}{C}
-MPI_Init(&argc, &argv);
-int MPI_Comm_size(MPI_Comm comm, int* size)
-int MPI_Comm_rank(MPI_Comm comm, int* rank)
-int MPI_Send(void* buff, int count, MPI_Datatype dtype, int dst, int tag, MPI_Comm comm)
-int MPI_Recv(void* buff, int count, MPI_Datatype dtype, int src, int tag, MPI_Comm comm, MPI_Status* stat)
+Chromatin -- verpackte DNS im Zellkern, zum Ablesen (Transkription) muss sie ausgepackt werden, Name von chromos = Farbe, da man Chromatin histochemisch anfärben kann.
 
-//non-blocking send and receive
-int MPI_Isend(void* buf, int count, MPI_Datatype type, int dst, int tag, MPI_Comm comm, MPI_Request* req)
-int MPI_Irecv(void* buf, int count, MPI_Datatype type, int src, int tag, MPI_Comm comm, MPI_Request* req)
-//non-blocking and blocking check for non-blocking send/receive
-int MPI_Test(MPI_Request* r, int* flag, MPI_Status* s)
-int MPI_Wait(MPI_Request* r, MPI_Status* s)
+Codon -- "Wort" auf der mRNS aus drei Nucleotid"buchstaben", das eine Aminosäure "bedeutet"
 
-int MPI_Bcast(void* buffer, int count, MPI_Datatype t, int root, MPI_Comm comm)
-int MPI_Scatter(void* sendbuf, int sendcount, MPI_Datatype sendtype, void* recvbuf,
-                int recvcount, MPI_Datatype recvtype, int root, MPI_Comm comm)
-int MPI_Gather(void* sendbuf, int sendcount, MPI_Datatype sendtype, void* recvbuf,
-               int recvcount, MPI_Datatype recvtype, int root, MPI_Comm comm)
-int MPI_Allgather(void* sendbuf, int sendcount, MPI_Datatype sendtype, void* recvbuf,
-                  int recvcount, MPI_Datatype recvtype, MPI_Comm comm)
-int MPI_Alltoall(void *sendbuf, int sendcount, MPI_Datatype sendtype, void *recvbuf,
-                 int recvcount, MPI_Datatype recvtype, MPI_Comm comm)
+Cristae -- Einstülpungen der inneren Mitochondrienmembran, wo die ATP-Synthase sitzt.
 
-/* logical/bitwise and/or for reduce op: MPI_LAND, MPI_BAND, MPI_LOR, MPI_BOR, etc
-                                         MPI_MAX, MPI_MIN, MPI_SUM, MPI_PROD, etc
-   type for reduce op: MPI_INT, MPI_DOUBLE, etc*/
-int MPI_Reduce(void* sendbuf, void* recvbuf, int count,
-               MPI_Datatype type, MPI_Op op, int root, MPI_Comm comm)
-//allows varying count of data to be send per process
-int MPI_Scatterv(void* sendbuf, int* sendcounts, int* displacements, MPI_Datatype sendtype,
-                 void* recvbuf, int recvcount, MPI_Datatype recvtype, int root, MPI_Comm comm)
+Cyclin -- Protein, das in einem Komplex mit einer Kinase den Zellzyklus weiterführt. Nach dem Zellzyklusschritt wird es abgebaut, um eine Dauerteilung zu verhindern.
 \end{minted}
-
-\includegraphics[scale=.4]{res/mpi}
-
-\includegraphics[scale=.4]{res/mpi11}
-
-\includegraphics[scale=.4]{res/mpi1}
-
-\noindent
-\textbf{MPI\texttt{\_}Send}: standard-mode blocking send\newline
-\textbf{MPI\texttt{\_}Bsend}: buffered-mode blocking send\newline
-\textbf{MPI\texttt{\_}Ssend}: synchronous-mode blocking send\newline
-\textbf{MPI\texttt{\_}Rsend}: ready-mode blocking send\newline
-\textbf{MPI\texttt{\_}Sendrecv} is blocking, but send buffers and receive buffers must be disjoint\newline
-\textbf{MPI\texttt{\_}Sendrecv\texttt{\_}replace} available with one buffer for send and receive\newline
-
 \newpage
 
-%\newgeometry{left=10mm, top=10mm, bottom=20mm}
 
+\section{D}
+\begin{minted}[linenos,numberblanklines=false,tabsize=4,breaklines,breakindent]{haskell}
+degenerierter Code -- 20 Aminosäuren sind 64 mögliche Basentripletts zugeordnet, jedes Triplett entspricht eindeutig einer Aminosäure, aber eine Aminosäure kann von mehreren Tripletts kodiert sein.
 
-\section{Java}
-%\usemintedstyle{abap}
-memory consistency:\newline
-1. if thread t1 caches variable v, thread t2 modifies it in main memory $\rightarrow$ t1 may not notice modification\newline
-2. compiler optimization: Reordering of statements when the result of sequential intra-thread execution is not changed\newline
+Destruenten -- in Ökosystemen Organismen, die von den Überresten anderer Organismen leben.
 
-\subsection{classes/functions/syntax}
+Deszendenztheorie -- Erklärung von biologischer Ähnlichkeit aufgrund von Abstammung (widerspricht der Artkonstanz)
 
-\begin{minted}[]{Java}
-(int i, int j) -> i + j //lambda function, alternativ: (i, j) -> i + j
+Deuterostomier -- Gruppe der Metazoa, wo der Urmund zum After wird, der Mund entsteht sekundär als Durchbruch gegenüber. Die "Wirbeltiere"
 
-//alternative for loop notation
-List<Integer> list = new ArrayList<T>(); int sum = 0;
-for (int elem: list) { sum += elem; } //can be read as: for elem in list do ...
-
-//java.util.ArrayList, implements interface List
-List<T> list = new ArrayList<T>();
-boolean add(T elem);
-boolean add(int index, T elem);
-void clear();
-boolean contains(Object o);
-T get(int index);
-int indexOf(Object o);
-boolean isEmpty();
-T remove(Object o);
-int size();
-
-//java.util.HashSet, implements interface Set, note that Sets don't contain same value twice
-Set<T> set = new HashSet<T>();
-boolean add(T elem);
-void clear();
-boolean contains(Object o);
-boolean isEmpty();
-boolean remove(Object o);
-int size();
-
-//java.lang.Thread, implement getResult() to be able to access results
-Thread t = new Thread(); //or new Thread(Runnable target);
-void interrupt(); //can also be used from outside: thread.interrupt();
-boolean isAlive();
-boolean isInterrupted(); //eg use with if(isInterrupted()) break; in a while loop
-void join();
-void run(); //defines the task of a thread, executed sequentially if directly called
-static void sleep(long millis); //need to catch InterruptedException around this, does not release monitor
-void start(); //starts the thread
-
-//example for passing Runnable to thread and immediately starting it
-(new Thread(() -> {
-    System.out.println("Hello");
-})).start();
-
-//code example for thread run() (run has to be implemented for Thread and Runnable class)
-while(true) {
-    if (isInterrupted()) break; //if thread has been interrupted, exit while loop
-    //else: do stuff
-    try { wait(); } catch(InterruptedException e) { interrupt(); }
-}
-
-//Callable<T> interface
-T call(); //implementing class must implement call() method with return type T
-
-//synchronization
-thread.join();
-synchronized(someObject) { doStuff(); } //synchronizes/locks on someObject
-public synchronized func() { } //synchronizes/locks on this
-
-//java.lang.Object, base class
-void notify();
-void notifyAll(); //recommended to use notifyAll() about notify(), wakes up all waiting threads
-void wait(); //releases monitor, waits for notify, can throw InterruptedException that must be caught
-void wait(long timeout);
-
-//to avoid concurrency errors, defensive copies can be used, eg for lists:
-java.util.Collections.unmodifiableList(someList); //will throw an error if someone tries to modify
-
-//atomic types, AtomicInteger(empty constructor or with initial value):
-int get(); //returns the variable
-int incrementAndGet(); //atomically increments and returns the variable
-int decrementAndGet(); //atomically decrements and returns the variable
-boolean compareAndSet(int oldValue, int newValue); //checks for old value and replaces with new one
-
-volatile int x; //introduces happens-before relationship between write and subsequent reads of a variable
-
-//ReentrantLock()/ReentrantLock(boolean fair)
-void lock();
-boolean tryLock();
-void unlock();
-
-//semaphore/barrier
-Semaphore(int capacity, boolean fair);
-void acquire(); //takes permit an reduces number of available permits; blocks if all  are acquired
-void release(); //releases and increases number of available permits; may release blocking acquirer
-boolean tryAcquire(); //like acquire() but does not block
-
-CyclicBarrier(int n); //calling await() blocks thread, after nth call, all threads resume
-int await(); //InterruptedException, BrokenBarrierException must be caught
-
-//Executor interface
-void execute(Runnable runnable); //only starts one thread
-
-//ExecutorService (subinterface of Executor) contains lifecycle logic
-void execute(Runnable runnable);
-static ExecutorService
-boolean isShutdown(); //returns true if executor has been shut down
-boolean isTerminated(); //returns true if all tasks have completed following shut down
-void shutdown(); //initiates shutdown, already submitted tasks are executed, no new tasks are accepted
-List<Runnable> shutdownNow() //stop/halt tasks that exec/wait, return list of tasks awaiting execution
-
-//Executors class (not equal to Executor interface) provides factory methods to create ExecutorService:
-static ExecutorService newSingleThreadExecutor() //creates Executor using single thread
-static ExecutorService newFixedThreadPool(int n) //creates thread pool with reused threads of fixed size
-static ExecutorService newCachedThreadPool() //creates thread pool with reused threads of dynamic size
-
-//Future<T>
-//submitting Callable<String> to existing executorService returns a Future<String>
-Future<String> future = executorService.submit(()->{ return "HelloWorld"; });
-String s = future.get(); //T get() blocks until thread finished and Future contains the value
-//alternative: future.get(1, TimeUnit.SECONDS); to abort after 1 sec
-
-//ScheduledExecutorService interface, use scheduleAtFixedRate for periodic execution of tasks
-ScheduledFuture<?> schedule(Runnable task, long delay, TimeUnit timeunit); //single execution
-ScheduledFuture<?> scheduleAtFixedRate(Runnable task, long initialDelay, long period, TimeUnit timeunit);
-
-//CompletableFuture<T> to implement callbacks
-static CompletableFuture<T> supplyAsync(Callable<T> task);
-//calling on Future returned by supplyAsync:
-CompletableFuture<T> thenApply(Callable<T> task); //returns new Future
-
-//ForkJoinPool, can execute RecursiveAction/RecursiveTask which must override compute()
-ForkJoinPool fjp = new ForkJoinPool();
-fjp.invoke(definedtask); //for RecursiveAction(no result)/RecursiveTask(result) definedtask
-
-//thread safe classe BlockingQueue<T> interface implemented by Array-/Linked-/PriorityBlockingQueue
-void put(T t); //blocks if full
-T take(); //blocks if empty
-//ConcurrentHashMap<K,V> is also a thread safe class
-
-//Stream<T>(interface), all Collection objects can call .stream() to return a Stream<T>
-Stream<T> filter(Predicate<? super T> predicate) //returns stream of elements matching given predicate
-stream.filter(Person::isStudent); //for given Stream<Person> and class Person with function isStudent()
-IntStream mapToInt(ToIntFunction<? super T> mapper) //returns IntStream after applying function to elements
-stream.mapToInt(Person::getAge); //for given Stream<Person> and class Person with function int getAge()
-R collect(Supplier<R> supp,             //performs mutable reduction operation on elements of stream
-          BiConsumer<R,? super T> accu, //supp: result container, accu: function to fold element in result
-          BiConsumer<R,R> combiner);    //combiner: combines two values, must be compatible with result
-//eg as:
-stream.collect(() -> 0,
-               (currentSum,person) -> { currentSum += person.getAge(); },
-               (leftSum,rightSum) -> { leftSum += rightSum; });
-//or same behavior with:
-stream.collect(() -> new MutableInt(),
-               (currentSum,person) -> { currentSum.add(person.getAge()); },
-               (leftSum, rightSum) -> { leftSum.add(rightSum.intValue()); }).intValue();
-//or collect with predefined functions (in this case group elements by age)
-Map<Integer, List<Person>> map = stream.collect(Collectors.groupingBy(Person::getAge));
-
-//parallel streams can be obtained from a Collection by calling parallelStream() equivalently to stream()
-//collect can be executed in parallel if unordered and collector is concurrent:
-Map<Integer, List<Person>> map = stream.collect(Collectors.groupingByConcurrent(Person::getAge));
-
+differentielle Genexpression -- Modell der Entwicklung, wonach alle Zellen zwar denselben Satz an Genen erhalten, aber unterschiedliche Teile davon aktivieren.
 \end{minted}
-
 \newpage
 
-\subsection{design by contract(JML)}
 
-\subsubsection{Keywords}
+\section{E}
+\begin{minted}[linenos,numberblanklines=false,tabsize=4,breaklines,breakindent]{haskell}
+Egoistisches Gen -- Konzept von Richard Dawkins, das die Evolution von Altruismus erklären soll. Gene, die ihre eigene Vermehrung fördern, indem sie altruistisches Verhalten fördern, "handeln" im eigenen Interesse und werden von Dawkins als "egoistisch" (selfish) bezeichnet. Durch die sprachliche Psychologisierung der Genetik hat dieses Konzept viel Verwirrung gestiftet.
 
-requires: precondition\newline
-ensures: postcondition\newline
-\textbackslash old(X): old value of X, only available in postcondition\newline
-\textbackslash result: return value, only available in postcondition
+Ektoderm -- Außenschicht des Metazoen-Keims, dazu zählen Haut, Nervengewebe, Magen. Gegensatz Endoderm und Mesoderm
 
-\subsubsection{Examples}
+Endoplasmatisches Reticulum -- Membransystem, das das Innere eukaryotischer Zellen durchzieht. Stapel des ER bilden die Kernhülle, vom ER knospen Vesikel ab, die Stoffe zum Golgi-Apparat bringen, von wo sie weiter transportiert werden
 
-\begin{minted}[samepage]{Java}
-//basic syntax, quantifiers(\forall, \exists)
-/*@ requires size > 0;
-  @ ensures \result != null && \result == \old(top());
-  @ ensures (\forall int i; 0 <= i && i < size;
-             \old(elements[i]) == elements[i]);
-  @*/
-Object pop() { ... pop logic ... }
+Endosomen -- Vesikel, die durch Einstülpung an der Zellmembran entstehen und Dinge in die Zelle aufnehmen.
 
-class C { //class invariants
-    //@ invariant size >= 0 && size <= 10;
-    private int size = 0;
-}
-//methods used in contracts must be defined as pure to assure there are no side effects in contracts:
-/*@ pure @*/ int getNum() { return size; }
+Endosymbiontentheorie -- auf Mereschkowskij und Margulis zurückgehende Theorie, dass Mitochondrien und Plastiden durch Endosymbiose von freilebenden Prokaryoten entstanden sind, dies erklärt die eigene (prokaryotische) DNS dieser Organellen, ihre eigenen (prokaryotischen) Ribosomen und ihre doppelte Membran.
 
-/*@ private behavior //<= following lines belong to private behavior, neccessary for private variables
-  @ requires size > 0;
-  @*/
-Object pop() { ... pop logic ... }
+Endproduktrepression -- Fall der Gensteuerung, bei dem ein Operon durch das (gebildete) Endprodukt abgeschaltet wird. Beispiel: Tryptophan-Synthese
 
-//alternative for using private variables is to specify the field as public only for the specification:
-private /*@ spec_public @*/ int size = 0;
+Epigenese -- Modell der Entwicklung, wo die Gestalt des Organismus erst durch Wechselwirkungen der Teile des Embryo entsteht.
+
+Epigenetik -- Die Fähigkeit eines Gens zur Expression ändert sich abhängig davon, wie oft es zuvor exprimiert wurde (eine Art "Gentraining"). Zellulär liegen Änderungen der Kernarchitektur, Methylierung der DNS und Deacetylierung der Histone zugrunde. Kann in manchen Fällen auch an die nächste Generation weitergegeben werden.
+
+Eukaryoten -- Organismen, bei denen die DNS in einem Zellkern vom Cytoplasma getrennt ist: Pilze, Pflanzen und Tiere
+
+Fluid -- Mosaic Model von Singer und Nicholson beschreibt die Membran als flüssige Matrix, worin Proteine mosaikartig eingebettet sind.
+\end{minted}
+\newpage
+
+
+\section{F}
+\begin{minted}[linenos,numberblanklines=false,tabsize=4,breaklines,breakindent]{haskell}
 
 \end{minted}
+\newpage
 
 
-\section{Sonstiges}
+\section{G}
+\begin{minted}[linenos,numberblanklines=false,tabsize=4,breaklines,breakindent]{haskell}
+Gen -- Genetischer Faktor (Region der DNA), der Merkmal bestimmt
 
-\subsection{Speedup}
-{\huge$S(n)=\frac{T(1)}{T(n)}~=~\frac{1}{(1-p)+\frac{p}{n}}$}
+G0-Phase -- zeitweise oder stabile Unterbrechung des Zellzyklus (G steht für gap), wenn eine Zelle sich differenziert (Nervenzellen sind in G0)
 
-\subsection{deadlocks}
-Only occurs if all four Coffman conditions hold:\newline
-\textbf{Mutual exclusion:} Only one thread can use an unshareable resource at one point of time. Further threads that need the resource have to wait.\newline
-\textbf{Hold and wait:} A thread that already holds a resource requests access to additional resources (and must potentially wait for them).\newline
-\textbf{No preemption:} A resource can only be released by the thread that holds it. Releasing a resource cannot be enforced from outside.\newline
-\textbf{Circular wait:} A circular dependency between threads holding and requesting resources must exist. For threads $t_1$,..., $t_n$, each thread $t_i$ waits for a resource $t_{(i+1) mod n}$ is holding.\newline
+Generation -- Folge von >1 Mitose zwischen Meiose und Befruchtung
+
+Generationswechsel -- regelmäßige Abfolge von Generationen, die sich in ihrer Fortpflanzung oder Kernphase unterscheiden (für Pflanzen die Regel).
+
+genetic drift -- zufällige Einflüsse auf die genetische Zusammensetzung einer Population, die nichts mit fitness zu tun haben. Spielt vor allem bei kleinen Populationen eine Rolle.
+
+Glucose -- Baustein von Stärke und Cellulose, kann durch Wasserabspaltung verknüpft werden. Wenn die OH-Gruppe dabei nach unten zeigt, entsteht eine a-Verknüpfung (die Zuckerreste sind gleich orientiert, es entsteht eine Spirale: Amylose), wenn sie nach oben zeigt, entsteht eine b-Verknüpfung (jeder zweite Zuckerrest ist gedreht, es entsteht eine gestreckte Konfiguration, Cellulose).
+
+Glycocalyx -- "Zuckerkelch", die zuckerhaltige Außenschicht tierischer Zellen (entsteht durch Glycolipide und Glycoproteine)
+
+Golgi-Apparat -- dynamisches Organell aus Membranstapeln, wo Proteine, die vom ER kommen, prozessiert werden
+
+Gradualismus -- die Auffassung, dass Evolution in kleinen Schritten gleichmäßig voranschreitet (Darwins Auffassung)
+
+Gründereffekt -- Sonderform der genetic drift, bei der eine kleine Individuengruppe eine neue Population begründet, wodurch zufällige Abweichungen der Allelhäufigkeiten dann große Folgen haben
+
+Gruppenselektion -- Selektion einer Gruppe von Individuen aufgrund einer Eigenschaft, die alle Individuen besitzen (z.B. Schwarmbildung)
+\end{minted}
+\newpage
 
 
-\subsection{Umgekerte polnische Notation}
+\section{H}
+\begin{minted}[linenos,numberblanklines=false,tabsize=4,breaklines,breakindent]{haskell}
+Heterochronie -- zeitliche Verschiebung von Entwicklungsvorgängen, führt zu Veränderungen des Bauplans
 
-$7*4$ in UPN: $7~4~*$\newline
-$a=a+1$ in UPN: $a~a~1~+~=$\newline
-$2*(2+3)$ in UPN: $2~2~3~+~*$\newline
+Heterocyste -- stickstoff-fixierende Zelle der Cyanobacterien ("Blaualgen"), die keine Photosynthese
+betreibt und von den Nachbarn mit Assimilaten versorgt werden muss.
+
+Heterozygot -- Individuum mit zwei unterschiedlichen Allelen an einem bestimmten Lokus
+
+Histone -- Proteine, die an die DNS binden und sie zu Knäueln (Nucleosomen) "verpacken"
+
+Homologiekriterien -- Kriterien für eine evolutionäre Verwandtschaft - Lage, spezifische Qualität und Kontinuität
+
+Homozygot -- Alle Allele eines Individuums Individuum mit zwei gleichen Allelen an einem bestimmten Lokus
+
+Hybridisierung -- Paarung spiegelbildlicher DNS- oder RNS-Abschnitte zu stabilen Doppelsträngen
+\end{minted}
+\newpage
+
+
+\section{I}
+\begin{minted}[linenos,numberblanklines=false,tabsize=4,breaklines,breakindent]{haskell}
+Intelligent Design -- pseudowissenschaftliche Spielart des Kreationismus, wo komplexe Strukturen als Spuren eines "intelligent design" betrachtet werden.
+
+Intron -- nicht-kodierende Abschnitte der DNS, die in die kodierende Sequenz eingefügt sind und vor der Translation durch Spleissen herausgeschnitten werden. Diese Stücke steuern dann das Ablesen weiterer Gene, sind also eine Art Sprache für die gegenseitige Kommunikation der Gene.
+\end{mi\newpage
+
+nted}
+
+\section{J}
+\begin{minted}[linenos,numberblanklines=false,tabsize=4,breaklines,breakindent]{haskell}
+
+\end{minted}
+\newpage
+
+
+\section{K}
+\begin{minted}[linenos,numberblanklines=false,tabsize=4,breaklines,breakindent]{haskell}
+K-Strategie -- ökologische Strategie von Organismen, die auf nachhaltige Nutzung der Resourcen bei langsamer Vermehrung abzielt
+
+Katastrophentheorie -- Versuch von Cuvier, die Weiterentwicklung von Fossilien mit dem Dogma der Artkonstanz zu verbinden. Katastrophen seien von Neuschöpfung gefolgt
+
+Kariotyp -- Alle Chromosomen eines Individuums
+
+Kern-Plasma-Relation -- Schwellenwert von Plasma pro DNS, bei dessen Überschreiten eine Zellteilung eingeleitet wird.
+
+Kinesin -- Klasse von Mikrotubulimotoren, die in der Regel durch Spaltung von ATP zum Pluspol des Mikrotubulus wandern
+
+Koevolution -- gemeinsame evolutionäre Entwicklung von nicht verwandten Organismen. Paradebeispiel wären Blütenpflanzen und Hautflügler.
+
+Kompartiment -- durch eine Membran umschlossener Reaktionsraum im Innern einer Zelle
+
+Konsumenten -- in der Ökologie die Organismen, die durch Fressen anderer Organismen ihre Energie gewinnen
+
+Kontinuitätsprinzip -- natura non saltat, Erklärung von Evolution über kleine Schritte
+
+Konvergenz -- Ähnlichkeit von Strukturen, die nicht auf Verwandtschaft, sondern ähnlicher Funktion beruht
+
+Kopplung -- wenn die Allele zweier Merkmale gemeinsam vererbt werden, spricht man von genetischer Kopplung. Deutung: die Gene für die beiden Merkmale liegen auf einem Chromosom.
+
+Kormus -- Grundbauplan aller höheren Landpflanzen (Farne und Samenpflanzen) aus stabförmigen Elementen (Telomen), die aus Leitgewebe, Parenchym und Epidermis bestehen
+
+Kulturelle Evolution -- Artentwicklung, die nicht auf genetischer Vererbung beruht, sondern auf Tradition. Für den Menschen wichtiger als biologische Evolution.
+\end{minted}
+\newpage
+
+
+\section{L}
+\begin{minted}[linenos,numberblanklines=false,tabsize=4,breaklines,breakindent]{haskell}
+Lamarckismus -- die von Lamarck begründete Denkschule, wonach sich Lebewesen aufgrund eines Vervollkommnungstriebs anpassen und danach die erworbenen Eigenschaften weiter vererben
+
+Latenzproblem -- Genetisches Problem, wie man erklärt, dass bei Kindern "verdeckte" Eigenschaften der Eltern auftreten. Wurde durch Mendel/Kölreuter über 2 Anlagen erklärt
+
+Lipid Raft -- "Fettflösschen", Bereiche der Membran mit einem hohen Gehalt an gesättigten Fettsäuren (daher verdickt), wo zahlreiche Signalmoleküle (z.B. Rezeptoren) versammelt sind.
+
+Lokus -- Spezifische Ort auf einen Chromosom wo man bestimmte Gene (Allele) findet
+
+Lyssenkoismus -- sowjetische Spielart des Neolamarckismus, wo Genetik als "bourgeois" abgelehnt und durch "Weitergabe erworbener Eigenschaften" ersetzt wird, bis 1956 dominant
+\end{minted}
+\newpage
+
+
+\section{M}
+\begin{minted}[linenos,numberblanklines=false,tabsize=4,breaklines,breakindent]{haskell}
+Makroevolution -- Entstehung neuer Baupläne oder qualitativ neuer Strukturen, von Darwin komplett ausgeblendet
+
+Meiose -- Sonderform der Mitose, wobei in der ersten Prophase Stücke von mütterlichen und väterlichen Chromosomen ausgetauscht werden und in der zweiten Teilung durch Ausfallen der DNS-Synthese die DNS-Menge halbiert wird. Kernstück der Sexualität
+
+Mikroevolution -- Darwins Evolutionsmodell einer allmählichen Veränderungen in kleinen Schritten durch Variation und Selektion. Damit lässt sich nicht die Entstehung neuer Baupläne erklären.
+
+Mikrotubuli -- rohrförmige Polymere aus Tubulin, an denen Kinesin und Dynein-Motoren entlanglaufen, Grundlage der Geißelbewegung
+
+Miller-Experiment -- Experimentelle Simulation der Situation auf der Urerde, dabei entstanden aus einfachen Molekülen komplexe Biomoleküle wie Aminosäuren, Nucleotide und Zucker
+
+Mimikry -- Nachahmung von Organismen durch andere Organismen zum Zwecke der Tarnung
+
+missing link -- zumeist hypothetische Zwischenformen eines evolutionären Wandels, die laut Darwin ein Mosaik aus "alt" und "neu" darstellen sollten. 
+
+Mitochondrien -- Zellorganellen, in denen die Atmung stattfindet, entstanden aus freilebenden Bakterien und haben daher eigene DNS und Ribosomen
+
+Mitose -- Teilung des Zellkerns, in der Regel mit einer Teilung der ganzen Zelle (Cytokinese) verbunden.
+
+Modularisierung -- Bauplan aller Lebewesen aus Elementen, die wiederholt und abgewandelt werden (Telome der Pflanzen, Segmente der Tiere, Gliedmaßen)
+
+Musterbildung -- bei der Entwicklung die Herausbildung einer geordneten Anordung von Elementen
+
+Mutation -- zufällige Veränderung der DNS-Sequenz, führt zumeist zu einer veränderten Abfolge der Aminosäuren im davon kodierten Protein
+
+Myosin -- Motorprotein, das unter ATP-Spaltung entlang von Actin wandern kann. Grundlage der Muskelbewegung
+\end{minted}
+\newpage
+
+
+\section{N}
+\begin{minted}[linenos,numberblanklines=false,tabsize=4,breaklines,breakindent]{haskell}
+Nische -- der "Beruf" eines Organismus in einem Ökosystem, also die Überlebensstrategie, die verfolgt wird.
+\end{minted}
+\newpage
+
+
+\section{O}
+\begin{minted}[linenos,numberblanklines=false,tabsize=4,breaklines,breakindent]{haskell}
+ökologische Potenz -- Bandbreite eines Organismus, die aufgrund seiner Physiologie und der Konkurrenz mit anderen Arten möglich ist.
+
+Operon -- Einheit aus mehreren Genen, die gemeinsam für eine Funktion notwendig sind und durch denselben Promotor gesteuert werden.
+
+Osmose -- Volumenänderungen von membranumschlossenen Räumen (Zellen), weil Wasser durch die Membran kann, Salze oder Zucker aber nicht.
+\end{minted}
+\newpage
+
+
+\section{P}
+\begin{minted}[linenos,numberblanklines=false,tabsize=4,breaklines,breakindent]{haskell}
+Panspermie-Hypothese -- Die Hypothese, dass das Leben über Meteoriten im Weltall verbreitet wurde. Löst die Frage nach der Entstehung von Leben nicht. 
+
+Parazoa -- Schein-Vielzeller, Kolonien aus Einzelzellen, die nicht wirklich ein Ganzes bilden (z.B. Schwämme)
+
+PCR -- Polymerase Ketten (chain) Reaktion. Wichtiges Verfahren der Molekularbiologie, bei dem bestimmte DNS-Stücke mithilfe von hybridisierenden kurzen Erkennungssequenzen (Oligonucleotidprimern) vervielfacht werden. Man benutzt dazu hitzestabile Polymerasen, die das DNS-Stück zwischen den Erkennungssequenzen verdoppeln. Danach wird die gebildete DNS neu aufgeschmolzen und der Schritt wiederholt.
+
+Phenotyp -- Erscheinungsform eines Merkmales
+
+Phloëm -- sprich Phlo-em, Leitelement der Kormophyten, das Assimilate von den Blättern zu den Verbrauchsorganen bringt.
+
+Phospholipide -- Bausteine der Membran, bestehen aus einem Glycerolrest, wo zwei OH-Gruppen mit Fettsäuren, die dritte OH-Gruppe über eine Phosphatgruppe mit einem weiteren Molekül verestert ist.
+
+Photosysteme -- Komplexe aus Chlorophyll, Proteinen und Antennenpigmenten (Carotinoiden) in der Thylakoidmembran, wo die Lichtreaktionen der Photosynthese stattfindet. Viele Chlorophylle sind zu Lichtsammelkomplexen vereinigt, wobei nach Anregung ein Strom ans Reaktionszentrum des Photosystems fließt und von dort die weiteren Membranvorgänge gestartet werden.
+
+physiologische Potenz -- Bandbreite eines Organismus, die aufgrund seiner Physiologie möglich ist
+
+Plankton -- frei schwimmende Mikroorganismen (Algen, Protisten, kleine Tiere)
+
+Plasmodesmen -- plasmatische Verbindung pflanzlicher Zelle, mikroskopische sichtbar als "Tüpfel".
+
+Plasmolyse -- Sonderfall der Osmose, wobei Zellen in einem hypertonischen Medium (Zucker- oder Salzlösung) Wasser verlieren und schrumpfen
+
+Plastiden -- semiautonome Organellen pflanzlicher Zellen mit eigener DNS und eigenen Ribosomen, die für die Photosynthese (Chloroplasten) verantwortlich sind, aber auch noch andere Stoffwechselwege (Carotinoidsynthese, Stärkebildung) beherbergen. Diese anderen Stoffwechselwege können gewebsabhängig hochgeregelt sein, wodurch Chromoplasten und Amyloplasten entstehen. Die Plastiden leiten sich von prokaryotischen Cyanobakterien ab.
+
+Polarität -- eine "Richtung" von Faktoren, die Entwicklung steuern
+
+Polygenismus -- Idee u.a. von Agassiz, dass die Menschenrassen nicht verwandt, sondern unabhängig geschaffen worden seien (auf der Basis der Artkonstanz)
+
+Präadaptation -- makroevolutionäres Konzept, wonach ein Merkmal schon vorbereitet wird, obwohl die Notwendigkeit erst später kommen wird. Wird inzwischen durch Funktionswechsel erklärt.
+
+Präformation -- Modell der Entwicklung, wo die Gestalt des Organismus schon vorgeformt im Ei vorliegt
+
+primäre Atmosphäre -- reduzierende (sauerstoff-freie) Atmosphäre der Urerde
+
+Produzenten -- in ökologischen Systemen die Organismen, die photosynthetisch Energie binden
+
+Prokaryoten -- Organismen, bei denen die DNS frei vorliegt, haben also keinen Zellkern - Bakterien und Cyanobakterien
+
+Protostomier -- Tiergruppe, bei der der Urmund der Gastrula zum Mund wird - die "Wirbellosen"
+
+Polymerase
+\end{minted}
+\newpage
+
+
+\section{Q}
+\begin{minted}[linenos,numberblanklines=false,tabsize=4,breaklines,breakindent]{haskell}
+
+\end{minted}
+\newpage
+
+
+\section{R}
+\begin{minted}[linenos,numberblanklines=false,tabsize=4,breaklines,breakindent]{haskell}
+r-Strategie -- ökologische Strategie von Organismen, die auf schnelle Vermehrung und Überdauerung abzielt
+
+Rekombination -- die Neukombination von Genen bei der Meiose
+
+Replikation -- Verdopplung der DNS
+
+Restriktionsenzyme -- Werkzeug der Molekularbiologie, Enzyme, die DNS gezielt an bestimmten Erkennungsstellen schneiden
+
+Rhinogradentier -- in der Karlsruher Biologie entdeckte Organismengruppe, die über adaptive Radiation ein pazifisches Archipel besiedelte, leider ausgestorben.
+
+Ribosom -- Organell, an dem im Cytoplasma die Translation stattfindet, besteht aus Protein und rRNS
+
+RNS-Welt -- Hypothese, dass vor der DNS-Protein Welt von heute Lebensformen mit RNS als Erb- und Enyzmsubstanz vorherrschten. Die RNS-Natur von rRNS, mRNS und tRNS gilt als wichtiger Beleg für dieses Modell.
+\end{minted}
+\newpage
+
+
+\section{S}
+\begin{minted}[linenos,numberblanklines=false,tabsize=4,breaklines,breakindent]{haskell}
+sekundäre Atmosphäre -- die oxidative Atmosphäre, wie wir sie heute haben, die aus der reduzierenden primären Atmosphäre infolge der Photosynthese entstanden ist
+
+Selektion -- "Zuchtwahl", Auslese der Individuen, die sich fortpflanzen. Bei der Züchtung sucht der Züchter aus, wer sich fortpflanzt. Bei der "natürlichen Zuchtwahl" entscheiden die Umweltbedingungen, welche Individuen übrigbleiben und sich fortpflanzen.
+
+Semipermeabilität -- Halbdurchlässigkeit von Membranen, Wasser und kleine apolare Moleküle gelangen hindurch, große Moleküle und Ionen nicht
+
+sexuelle Selektion -- Auswahl des Geschlechtspartners durch das andere Geschlecht aufgrund von besonderen Merkmalen, die etwas über die fitness aussagen und zu einem sexuellen Dimorphismus führen.
+
+Soma -- bei der Entwicklung entstehende Zell-Linien, die nicht an der Fortpflanzung teilnehmen und daher sterblich sind.
+
+Sozialdarwinismus -- Übertragung darwinistischer Evolution auf die menschliche Gesellschaft
+
+Spaltungsregel -- auch 2. Mendelgesetz: bei der Selbstung von Heterozygoten (Aa) spaltet sich die Nachkommenschaft nach 1:2:1 in AA, Aa und aa auf.
+
+Speziation -- Artbildung, zumeist allopatrisch (nach geographischer Auftrennung einer Population)
+
+Substrataktivierung -- Fall der Gensteuerung, bei dem ein Operon durch den (umzusetzenden) Ausgangsstoff angeschaltet wird. Beispiel: Lactose-Abbau
+
+sympatrisch -- Variante der Artbildung, bei der die Subpopulation ohne vorausgehende geographische Trennung eine Fortpflanzungsbarriere ausbildet.
+
+synaptonemaler Komplex -- molekularer Reißverschluss, der mütterliche und väterliche Chromosomen passgenau nebeneinander legt - Voraussetzung für die Meiose
+
+Synthetische Theorie -- Erweiterung von Darwins Theorie um populationsgenetische (Speziation), entwicklungsbiologische (Embryologie) und zellbiologische (Endosymbiose) Elemente.
+\end{minted}
+\newpage
+
+
+\section{T}
+\begin{minted}[linenos,numberblanklines=false,tabsize=4,breaklines,breakindent]{haskell}
+Telom -- Baumodul aller höheren Landpflanzen (Kormophyten) bestehend aus Leitbündel, Parenchym und Epidermis
+
+Thylakoidmembran -- innere Membran des Chloroplasten, zu Stapeln (Grana) aufgeschichtet. Hier findet die Lichtreaktion der Photosynthese statt.
+
+Transition -- Mutation, bei der der Basentyp (Purin oder Pyrimidin) beibehalten wird
+
+Transkription -- Ablesen der mRNS von der DNS (passiert im Zellkern)
+
+Translation -- Übersetzen der mRNS in Protein (passiert im Cytoplasma an den Ribosomen)
+
+Transversion -- Mutation, bei der eine Purin- in eine Pyrimidinbase umgewandelt wird (oder umgekehrt).
+
+Turgor -- Wanddruck der Pflanzenzellen, entsteht durch Osmose, wodurch sich die Zelle ausdehnt und auf die Wand einen Druck ausübt, der das Wachstum antreibt.
+
+\end{minted}
+\newpage
+
+
+\section{U}
+\begin{minted}[linenos,numberblanklines=false,tabsize=4,breaklines,breakindent]{haskell}
+Uniformitätsregel -- auch 1. Mendelgesetz: bei der Kreuzung zweier homozygoter Eltern (AA mit aa) entstehen einheitliche Nachkommen (Aa)
+
+\end{minted}
+\newpage
+
+
+\section{V}
+\begin{minted}[linenos,numberblanklines=false,tabsize=4,breaklines,breakindent]{haskell}
+Variation - die genetische Unterschiedlichkeit von Individuen einer Population, Voraussetzung für die Evolution
+
+Vektoren -- ringförmige DNS-Stücke von Bakterien, auf denen einzelne Gene für bestimmte Eigenschaften weitergegeben werden können. Diese wurden für molekularbiologische Zwecke umgebaut, um Gene von Interesse vervielfältigen und auf andere Organismen übertragen zu können.
+\end{minted}
+\newpage
+
+
+\section{W}
+\begin{minted}[linenos,numberblanklines=false,tabsize=4,breaklines,breakindent]{haskell}
+
+\end{minted}
+\newpage
+
+
+\section{X}
+\begin{minted}[linenos,numberblanklines=false,tabsize=4,breaklines,breakindent]{haskell}
+Xylem -- Wasserleitungsgewebe der Kormophyten, verholzt, transportiert Wasser und Mineralien von der Wurzel nach oben
+
+\end{minted}
+\newpage
+
+
+\section{Y}
+\begin{minted}[linenos,numberblanklines=false,tabsize=4,breaklines,breakindent]{haskell}
+
+\end{minted}
+\newpage
+
+
+\section{Z}
+\begin{minted}[linenos,numberblanklines=false,tabsize=4,breaklines,breakindent]{haskell}
+Zuchtwahl -- alter Begriff für Selektion, auf Darwins Modell des Taubenzüchters beruhend
+
+\end{minted}
+\newpage
+
+
 
 
 \end{document}
